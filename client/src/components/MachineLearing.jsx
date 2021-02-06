@@ -8,7 +8,6 @@ import axios from 'axios'
 let classifier;
 
 const MachineLearning = (props)=> {
-  console.log("mlka", props.location.assgid)
   const videoRef = useRef();
   const [start, setStart] = useState(false);
   const [messageLoading, setMessageLoading]=useState("Setting up things...wait for 2-3 minutes")
@@ -70,7 +69,9 @@ const MachineLearning = (props)=> {
         'Authorization':token
       }
     })
-    .then((err,res)=>console.log(res))
+    .then((err,res)=>{
+      if(!err)alert("Report generated..!")
+    })
     setResult([]);
   }
   const toggle = () => {
@@ -84,7 +85,7 @@ const MachineLearning = (props)=> {
         alert("You will be monitored now...")
         setSlowload(true)
         setMessageLoading("")
-      }, 2000
+      }, 60000
       )
       setStart(!start)
     
