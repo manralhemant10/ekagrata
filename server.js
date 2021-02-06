@@ -27,18 +27,13 @@ app.get('/api/googleauthurl',(req,res)=>{
 app.get('/api/gettoken',async (req,res)=>{
     const code = req.query.code
     const token = await getTokenFun(code)
-    //console.log("ram2",token)
     res.send(token)  
-    //res.end();
 })
 
 app.get('/api/listcourses',async (req,res)=>{
     const authvar = JSON.parse(req.headers.authorization)
     const oAuth2Client =  await setCred(authvar)
-   //console.log("ram",oAuth2Client)
-    //console.log("ram",req.headers.authorization)
     const classroom = google.classroom({version: 'v1', auth:oAuth2Client});
-   // console.log("ram",classroom)
     classroom.courses.list({
         pageSize: 10,
       }, (err, r) => {
@@ -51,13 +46,10 @@ app.get('/api/listcourses',async (req,res)=>{
         }
       });
       
-    
-    //res.send("ok")
-})
+  })
 
 app.get('/api/listassignment/:id',async(req,res)=>{
   const courseid = req.params.id
- // console.log("id: ",courseid)
   const authvar = JSON.parse(req.headers.authorization)
   const oAuth2Client =  await setCred(authvar)
   const classroom = google.classroom({version: 'v1', auth:oAuth2Client});
@@ -65,7 +57,6 @@ app.get('/api/listassignment/:id',async(req,res)=>{
     const r = await classroom.courses.courseWork.list({
       courseId: courseid
     })
-   // console.log("check: ",r)
     res.send(r.data)
   }
   catch(err){
@@ -123,23 +114,12 @@ mongoose.connect(URI,{
     console.log('Connected to MongoDb');
 })
 
-/*app.get('/courses',(err,res)=>{
-
-})
-
-app.get('/assignments',(err,res)=>{
-
-})*/
-
-
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   app.use(express.static('client/build'));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
   });
 }
-
-
 
 //Listen Server
 const PORT = process.env.PORT || 5000

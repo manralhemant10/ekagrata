@@ -22,8 +22,6 @@ const CallbackHandler  =(props)=>{
                     code: code
                 }
             });
-            //console.log(JSON.stringify(resp.data.tokens))
-
                 localStorage.setItem("token",JSON.stringify(resp.data.tokens))
                 
                 dispatch({
@@ -31,7 +29,6 @@ const CallbackHandler  =(props)=>{
                     payload:true
                 })
         } catch (err) {
-            // Handle Error Here
             console.error(err);
         }
     

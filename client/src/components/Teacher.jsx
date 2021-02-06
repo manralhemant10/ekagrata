@@ -9,7 +9,6 @@ const Teacher = (props)=>{
         axios.get(url)
         .then((res)=>{
             setReport(res.data)
-        //console.log("Ram",res)
     })
     },[])
     return(

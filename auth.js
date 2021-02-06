@@ -17,10 +17,7 @@ const credentials = {
 }
 
 var oAuth2Client;
-const setCred = (token)=>{
-  // oAuth2Client =  new google.auth.OAuth2(
-    //credentials.client_id, credentials.client_secret, credentials.redirect_uris)
-    
+const setCred = (token)=>{   
     oAuth2Client.setCredentials(token)
     return oAuth2Client
 }
@@ -36,12 +33,9 @@ const authUrlFun= ()=>{
   
 }
 const getTokenFun=async(code)=>{
-  //const oAuth2Client =  new google.auth.OAuth2(
-    //credentials.client_id, credentials.client_secret, credentials.redirect_uris);
   
   try{
     const res =  await oAuth2Client.getToken(code)
-    //oAuth2Client.setCredentials(res)
     return res
   }
   catch(err){

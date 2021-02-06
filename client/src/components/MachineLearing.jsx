@@ -8,7 +8,6 @@ import axios from 'axios'
 let classifier;
 
 const MachineLearning = (props)=> {
-  console.log("mlka", props.assgid)
   const videoRef = useRef();
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
@@ -19,18 +18,10 @@ const MachineLearning = (props)=> {
     const mobilenet = ml5.featureExtractor('MobileNet', ()=>{
       console.log('Model is ready!!!');
       classifier = mobilenet.classification(videoRef.current)
-     // console.log("ram",classifier)
       classifier.load('/api/model.json', ()=>{
         console.log("loaded")
         setModelloaded(true)
-      /*  classifier.classify(videoRef.current, (error, results) => {
-          if (error) {
-            console.error(error);
-            return;
-          }
-          setResult(results);
-          console.log(results)
-        });*/
+
       });
       
     });
@@ -56,16 +47,13 @@ const MachineLearning = (props)=> {
           console.error(error);
           return;
         }
-       // setResult((prev)=>
-         // [...prev,results]
-        //);
+
         if(results[0].confidence>results[1].confidence){
           setResult((prev)=>[...prev,results[0].label])
         }
         else{
           setResult((prev)=>[...prev,results[1].label])
         }
-      console.log(result)
       });
     }
   }, 1000);  

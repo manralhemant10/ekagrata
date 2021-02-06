@@ -5,13 +5,22 @@ const Home = ()=>{
     <>
     <div className="container mt-5">
     <p className="bg-light text-center h5 px-5 py-5">
-        Attentive is an online tool that helps teachers to determine a student’s level of
-         engagement and focus during a class. It creates a report describing the amount of
-          time spent on an assignment, the average attention span of the student, and times
-           when the student was distracted. This can be used to improve online learning and 
-           ensure that students are being taught knowledge they will need throughout their lives.
+         No matter how much an individual swear that he/she won’t be “that person,” it seems every smartphone
+         user eventually becomes chained to their phone.
+         Studies show most smartphone users keep their devices within arm’s reach all day, every day.
+         Every few minutes, even if the phone didn’t vibrate or sound an alert,
+         he/she feel obligated to check for updates on the tiny computers we keep close.
+         Smartphones are increasingly addictive and distracting, and as a result it’s getting 
+         harder for people to pay attention to what they’re doing.<br/>
+         <b>Ekagrata</b> is the web app which helps students to increase their level of concentration while 
+         solving assignments assigned by the teacher using Google Classroom and generates the report containing the
+         total amount of time the student was disracted.
+
     </p>
-    <p className="bg-light text-right">Project by: Hemant and Lalit</p>
+    <p className="bg-light text-right">
+    Project by: <a href="https://www.linkedin.com/in/manralhemant10/">Hemant</a> and 
+         <a href="https://www.linkedin.com/in/lalit-mohan-reddy-7a5113152/">Lalit</a>
+    </p>
     </div> 
     </>
     )

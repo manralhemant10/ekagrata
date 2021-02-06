@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux'
 
 const Nav =()=> {
     const states = useSelector(state=>state)
-    //console.log(states)
     return (
             <nav className=" d-flex align-items-center justify-content-center navbar navbar-expand-lg navbar-dark bg-primary " style={{height:"10vh"}}>
                 <NavLink style={{color:"white"}} exact className="nav-link active" to="/">Home</NavLink> 

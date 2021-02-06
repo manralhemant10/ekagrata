@@ -45,7 +45,6 @@ const Dashboard = ()=>{
           setAssignmentList(res.data.courseWork)  
           let temp=(res.data.courseWork[0].id).toString()
           setAssgid(temp.toString())
-          console.log("ram",assgid)
           setAssignmentWait(false)
         }
         else

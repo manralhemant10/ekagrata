@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import GoogleButton from 'react-google-button'
-import { Redirect,useHistory } from 'react-router-dom'
-
-
 
 const GoogleLogin = ()=>{
-    const history = useHistory()
     const state = useSelector(state=>state)
-    const dispatch  = useDispatch()
     const [authUrl, setAuthUrl] = useState("")
     const [error,setError]  = useState("")
    useEffect(()=>{
