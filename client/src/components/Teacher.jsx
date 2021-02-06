@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Teacher = (props)=>{
-    const ass = props.assgid
+    const ass = props.location.assgid
     const [report,setReport ] = useState([])
     useEffect(()=>{
         let url = "/api/alldocuments/"+ass
