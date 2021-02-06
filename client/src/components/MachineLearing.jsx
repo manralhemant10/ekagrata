@@ -8,11 +8,14 @@ import axios from 'axios'
 let classifier;
 
 const MachineLearning = (props)=> {
+  console.log("mlka", props.location.assgid)
   const videoRef = useRef();
   const [start, setStart] = useState(false);
+  const [messageLoading, setMessageLoading]=useState("Setting up things...wait for 2-3 minutes")
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [modelloaded, setModelloaded] = useState(false);
+  const [slowload, setSlowload] = useState(false)
   const token = localStorage.getItem('token')
   const loadModel = ()=>{
     const mobilenet = ml5.featureExtractor('MobileNet', ()=>{
@@ -20,8 +23,7 @@ const MachineLearning = (props)=> {
       classifier = mobilenet.classification(videoRef.current)
       classifier.load('/api/model.json', ()=>{
         console.log("loaded")
-        setModelloaded(true)
-
+     setModelloaded(true)
       });
       
     });
@@ -47,7 +49,7 @@ const MachineLearning = (props)=> {
           console.error(error);
           return;
         }
-
+      
         if(results[0].confidence>results[1].confidence){
           setResult((prev)=>[...prev,results[0].label])
         }
@@ -61,7 +63,7 @@ const MachineLearning = (props)=> {
   const sendPredections = ()=>{
     const data = {
       pre_data: result,
-      assignment_id: props.assgid
+      assignment_id: props.location.assgid
     }
     axios.post('/api/addpredection',data,{
       headers: {
@@ -69,31 +71,69 @@ const MachineLearning = (props)=> {
       }
     })
     .then((err,res)=>console.log(res))
+    setResult([]);
   }
   const toggle = () => {
-    if(start)sendPredections()
-    setStart(!start)
-    setResult([]);
+    if(start){
+      sendPredections()
+      setStart(!start)
+    }
+    else{
+      setTimeout(()=>
+      { 
+        alert("You will be monitored now...")
+        setSlowload(true)
+        setMessageLoading("")
+      }, 2000
+      )
+      setStart(!start)
+    
+    }
+
+    
+    
   }
 
   return (
     <div className="container">
-      <Loader
+      {!start?(
+        <Loader
         type="Watch"
         color="#00BFFF"
         height={200}
         width={200}
         visible={!loaded}
-        style={{display:'flex', justifyContent:'center', marginTop:'30px' }}
+        className="d-flex justify-content-center mt-3"
       />
-      <div className="d-flex justify-content-center align-items-center mt-5">
+      ):(
+        <>
+        <div className="d-flex justify-content-center "> 
+        <div className="text-center mt-4">
+          <h3 className="text-center">{messageLoading}</h3>
+          <Loader
+          type="Bars"
+          color="#00BFFF"
+          height={30}
+          width={30}
+          visible={!slowload}
+          
+        />
+      </div>
 
-      <video
-            ref={videoRef}
-           
-            width="700"
-            height="400"
-          />
+        </div>
+      </>
+      )
+    }
+      
+      
+      <div className="d-flex justify-content-center align-items-center">
+           <video
+           className="mt-4"
+           ref={videoRef}
+           width="700"
+           height="400"
+         />
+     
   
           {loaded && (
             <button className="btn btn-primary ml-3 " onClick={() =>{ 
