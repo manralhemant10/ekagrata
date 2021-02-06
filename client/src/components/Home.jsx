@@ -3,8 +3,9 @@ import React from 'react'
 const Home = ()=>{
     return(
     <>
-    <div className="container mt-5">
-    <p className="bg-light text-center h5 px-5 py-5">
+    <div className="container mt-4">
+    <h2 className="text-center">Ekagrata</h2>
+    <p className="bg-light text-center h5 px-3 py-3 font-weight-light">
          No matter how much an individual swear that he/she won’t be “that person,” it seems every smartphone
          user eventually becomes chained to their phone.
          Studies show most smartphone users keep their devices within arm’s reach all day, every day.
@@ -17,9 +18,9 @@ const Home = ()=>{
          total amount of time the student was disracted.
 
     </p>
-    <p className="bg-light text-right">
+    <p className="text-right">
     Project by: <a href="https://www.linkedin.com/in/manralhemant10/">Hemant</a> and 
-         <a href="https://www.linkedin.com/in/lalit-mohan-reddy-7a5113152/">Lalit</a>
+         <a href="https://www.linkedin.com/in/lalit-mohan-reddy-7a5113152/"> Lalit</a>
     </p>
     </div> 
     </>
